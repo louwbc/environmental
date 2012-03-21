@@ -1,0 +1,45 @@
+{% extends "record/base.html" %}
+
+{% load i18n %}
+{% load uni_form %}
+
+{% block head_title %}{% blocktrans %}Record Description{% endblocktrans %}{% endblock %}
+
+{% block body %}
+    <h1>{{ record.title }}</h1>
+        <p>
+            <!-- record info -->
+            <h2>{{ record.title }}</h2>
+            <div class="body">
+                <strong><i>{{ record.author }}<br /></strong></i>
+                            {{ record.description|linebreaks }}
+            </div>
+        </p>
+        <p>
+            <!-- record action -->
+            {% if isyours %}
+                <table>
+                    <tr>
+                        <td>
+                            <!-- update record -->
+                            <form method="GET" action="{% url update_record record.id %}">
+                                <input type="submit" value="{% trans "Update Record" %}" />
+                            </form>
+                        </td>
+                        <td>
+                            <!-- delete record -->
+                            <form method="POST" action="{% url delete_record record.id %}">
+                                <input type="submit" value="{% trans "Delete Record" %}" />
+                            </form>
+                        </td>
+                    </tr>
+                </table>
+            {% endif %}
+        </p>
+        <p class="meta">
+            <!-- meta -->
+            <div class="details">{% blocktrans %}added by {% endblocktrans %} <a href="{% url profile_detail record.adder.username %}">{{ record.adder }}</a></div>{% blocktrans %}on{% endblocktrans %} {{ record.added|date }}
+        </p>
+
+{% endblock %}
+

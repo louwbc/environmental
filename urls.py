@@ -6,15 +6,17 @@ from django.contrib import admin
 admin.autodiscover()
 
 from pinax.apps.account.openid_consumer import PinaxConsumer
+from record.models import Record
 
 
 handler500 = "pinax.views.server_error"
 
 
 urlpatterns = patterns("",
-    url(r"^$", direct_to_template, {
+    url(r"^$", direct_to_template,{
         "template": "homepage.html",
-    }, name="home"),
+        }, name="all_records"),
+
     url(r"^admin/invite_user/$", "pinax.apps.signup_codes.views.admin_invite_user", name="admin_invite_user"),
     url(r"^admin/", include(admin.site.urls)),
     url(r"^about/", include("about.urls")),
@@ -23,6 +25,8 @@ urlpatterns = patterns("",
     url(r"^profiles/", include("idios.urls")),
     url(r"^notices/", include("notification.urls")),
     url(r"^announcements/", include("announcements.urls")),
+    # record urls.py file
+    url(r"^record/", include("record.urls")),
 )
 
 

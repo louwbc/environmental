@@ -1,0 +1,19 @@
+{% extends "record/base.html" %}
+
+{% load i18n %}
+
+{% block head_title %}{% blocktrans %}Add Record{% endblocktrans %}{% endblock %}
+
+{% block body %}
+    <h1>{% trans "Add Record" %}</h1>
+
+    <form enctype="multipart/form-data" method="POST" action="" class="uniForm">
+        <fieldset class="inlineLabels">
+        {{ record_form|as_uni_form }}
+            <div class="form_block">
+                <input type="submit" value="{% trans 'add record' %}">
+            </div>
+        </fieldset>
+    </form>
+{% endblock %}
+    

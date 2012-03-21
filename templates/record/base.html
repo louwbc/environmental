@@ -1,0 +1,13 @@
+{% extends "site_base.html" %}
+
+{% load i18n %}
+
+{% block rtab_id %}id="record_tab"{% endblock %}
+
+{% block subnav %}
+    <ul>
+        <li><a href="{% url all_records %}">{% trans "All records" %}</a></li>
+        <li><a href="{% url your_records %}">{% trans "Your records" %}</a></li>
+        <li><a href="{% url add_record %}">{% trans "Add a record" %}</a></li>
+    </ul>
+{% endblock %}
