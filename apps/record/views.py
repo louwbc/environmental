@@ -4,7 +4,7 @@ from django.template import RequestContext
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
-from django.utils.translation import ugettet_lazy as _
+from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import User
 
 #from record
@@ -41,7 +41,7 @@ def record(request, record_id):
         }, context_instance=RequestContext(request))
 
 @login_required
-def your_record(request):
+def your_records(request):
     """ Return the logged user record list. """
     yourrecord = Record.objects.filter(adder=request.user).order_by("-added")
     return render_to_response("record/records.html", {

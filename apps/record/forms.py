@@ -5,7 +5,7 @@ from django.utils.translation import ugettext_lazy as _
 # from record
 from record.models import Record
 
-class RecordForm(form.ModelForm):
+class RecordForm(forms.ModelForm):
     """
     Record Form: form associated to the Record model
     """
@@ -22,7 +22,7 @@ class RecordForm(form.ModelForm):
         # if a record with that title already exists...
         if not self.is_update:
             if Record.objects.filter(title=self.cleaned_data['title']).count() > 0:
-            raise forms.ValidationError(_("There is already this record in the web."))
+                raise forms.ValidationError(_("There is already this record in the web."))
         return self.cleaned_data
 
     class Meta:
