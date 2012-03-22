@@ -47,7 +47,7 @@ def your_record(request):
     return render_to_response("record/records.html", {
         "records": yourrecords,
         "list": 'yours',
-        } context_instance=RequestContext(request))
+        }, context_instance=RequestContext(request))
 
 @login_required
 def add_record(request):
@@ -60,7 +60,7 @@ def add_record(request):
             new_record = record_form.save(commit=False)
             new_record.adder = request.user
             new_record.save()
-            request.user.message_set.create(message=_("You have saved book '%(title)s'")
+            request.user.message_set.create(message=_("You have saved book '%(title)s'"))
             return HttpResponseRedirect(reverse("record.views.records"))
     # GET request
     else:
