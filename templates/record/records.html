@@ -21,8 +21,6 @@
     <!-- alternate -->
     {% if records %}
 
-    {% autopaginate records 5 %}
-
         <table class="record">
             {% for record in records %}
                 <tr class="{% cycle odd, even %}">
@@ -38,8 +36,6 @@
                 </tr>
             {% endfor %}
         </table>
-
-    {% paginate %}
 
     {% else %}
         <p>{% trans "No records yet." %}</p>
