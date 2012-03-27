@@ -32,7 +32,7 @@ def user_records(request, username):
 def record(request, record_id):
     """ Return a record given its id."""
     isyours = False
-    record = Record.object.get(id=record_id)
+    record = Record.objects.get(id=record_id)
     if request.user == record.adder:
         isyours = True
     return render_to_response("record/record.html", {

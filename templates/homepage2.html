@@ -1,0 +1,46 @@
+{% extends "record/base.html" %}
+
+{% load i18n %}
+
+{% block head_title %}{% blocktrans %}Record{% endblocktrans %}{% endblock %}
+
+{% block body %}
+
+    <h1>
+        {% ifequal list 'all' %}
+            {% trans "All Records" %}
+        {% endifequal %}
+        {% ifequal list 'user' %}
+            {% trans "Records of " %}{{ username }}
+        {% endifequal %}
+        {% ifequal list 'yours' %}
+            {% trans "Your Records" %}
+        {% endifequal %}
+    </h1>
+
+    <!-- alternate -->
+    {% if records %}
+
+        <table class="record">
+            {% for record in records %}
+                <tr class="{% cycle odd, even %}">
+                    <!-- meta -->
+                    <td class="meta" >
+                        <div class="details">{% blocktrans %}added by {% endblocktrans %} <a href="{% url profile_detail record.adder.username %}">{{ record.adder }}</a></div>
+                        {% blocktrans %}on{% endblocktrans %} {{ record.added|date }}
+                        <a herf="/record/user_records/{{ record.adder.username }}"><i>{% blocktrans %}View all records added by {% endblocktrans %}{{ record.adder }}</i></a>
+                    </td>
+                    <!-- record info -->
+                    <td>
+                        <h2><a href="/record/{{ record.id }}/record/">{{ record.title }}</a></h2>
+                </tr>
+            {% endfor %}
+        </table>
+
+    {% else %}
+        <p>{% trans "No records yet." %}</p>
+    {% endif %}
+
+{% endblock %}
+
+                            
