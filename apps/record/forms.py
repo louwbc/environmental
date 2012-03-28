@@ -11,7 +11,7 @@ class RecordForm(forms.ModelForm):
     """
 
     def __init__(self, *args, **kwargs):
-        super(RecordForm, self).__(*args, **kwargs)
+        super(RecordForm, self).__init__(*args, **kwargs)
         self.is_update = False
 
     def clean(self):
